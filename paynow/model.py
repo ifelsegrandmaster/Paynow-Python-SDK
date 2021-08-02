@@ -430,6 +430,9 @@ class Paynow:
         }
 
         for key, value in body.items():
+            if key == "resulturl" or key == "returnurl" or key == "reference":
+                continue
+
             body[key] = quote_plus(str(value))
 
         body['hash'] = self.__hash(body, self.integration_key)
